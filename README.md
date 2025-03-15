@@ -1,34 +1,17 @@
+function Section:Paragraph(text)
+    local Paragraph = Instance.new("TextLabel")
+    Paragraph.Name = "Paragraph"
+    Paragraph.Parent = self.Content or self.Section or self.Frame
+    Paragraph.BackgroundTransparency = 1
+    Paragraph.Size = UDim2.new(1, 0, 0, 20)
+    Paragraph.Position = UDim2.new(0, 0, 0, self:CalculateNextElementPosition()) 
+    Paragraph.Text = text
+    Paragraph.Font = Enum.Font.SourceSans
+    Paragraph.TextSize = 14
+    Paragraph.TextColor3 = Color3.fromRGB(200, 200, 200)
+    Paragraph.TextXAlignment = Enum.TextXAlignment.Left
+    Paragraph.TextWrapped = true
+    self:UpdateLayout()
 
-local Paragraph = {}
-Paragraph.__index = Paragraph
-
-function Paragraph.new(text, parent)
-    local self = setmetatable({}, Paragraph)
-    local paragraphLabel = Instance.new("TextLabel")
-    paragraphLabel.Size = UDim2.new(1, -10, 0, 40)
-    paragraphLabel.BackgroundTransparency = 1
-    paragraphLabel.TextWrapped = true
-    paragraphLabel.TextXAlignment = Enum.TextXAlignment.Left
-    paragraphLabel.TextYAlignment = Enum.TextYAlignment.Top
-    paragraphLabel.Font = Enum.Font.SourceSans
-    paragraphLabel.TextSize = 16
-    paragraphLabel.TextColor3 = Color3.fromRGB(220, 220, 220)
-    paragraphLabel.Text = text
-
-    paragraphLabel.Parent = parent or game.CoreGui
-
-    self.Label = paragraphLabel
-    return self
+    return Paragraph
 end
-
-function Paragraph:SetText(newText)
-    self.Label.Text = newText
-end
-
-function Paragraph:Destroy()
-    if self.Label then
-        self.Label:Destroy()
-    end
-end
-
-return Paragraph
