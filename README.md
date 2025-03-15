@@ -1,8 +1,9 @@
+-- TextBox.lua
 local TextBox = {}
 TextBox.__index = TextBox
 
 function TextBox.new(context: table)
-	local self = setmetatable(context, TextBox)	
+	local self = setmetatable(context, TextBox)
 	return self
 end
 
@@ -25,9 +26,7 @@ function TextBox:SetText(text: string)
 	end
 end
 function TextBox:SetDefault(text: string)
-	if self.TextBox then
-		self.TextBox.Text = text
-	end
+	self:SetText(text)
 end
 
 return TextBox
